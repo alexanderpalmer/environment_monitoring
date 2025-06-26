@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    padding: 10px;
+    gap: 0.2em;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: rgb(240,240,240);
+}
+
+h1 {
+    font-weight: bold;
+    background: -webkit-linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-left: 0.5em;
+}
+
+#node {
+    background: #3F5EFB;
+    background: linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    flex-basis: calc(25% - 0.2em) ;
+    padding: 1em;
+    border-radius: 0.5em;
+}
+
+#node:hover{
+    transform: scale(102%);
+    transition: all 0.5s ease-out;
+}
+
+#node h2 {
+    margin: 0;
+    color: rgb(255,255,255);
+}
+
+#node table td {
+    color: rgb(255,255,255);
+}
+
+#node table td:first-child {
+    width: 120px;
+}
+
+@media screen and (max-width: 1050px) {
+    #node {
+        flex-basis: calc(33.333333333% - 0.2em);
+    } 
+}
+
+@media screen and (max-width: 800px) {
+    #node {
+        flex-basis: calc(50% - 0.2em);
+    } 
+}
+
+@media screen and (max-width: 550px) {
+    #node {
+        flex-basis: 100%;
+    }
+}
