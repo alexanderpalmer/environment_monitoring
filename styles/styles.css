@@ -10,13 +10,15 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: rgb(240,240,240);
+    background-color: rgb(31,31,31);
 }
 
 main {
     display: flex;
     padding: 10px;
-    gap: 0.2em;
+    /* Distanz zur Höhe des Footers */
+    margin-bottom: 100px;
+    gap: 0.4em;
     flex-wrap: wrap;
     justify-content: space-between;
 }
@@ -28,30 +30,46 @@ main {
 
 h1 {
     font-weight: bold;
-    background: -webkit-linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    background: linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding-left: 0.5em;
 }
 
+
 #node {
     background: #3F5EFB;
     background: linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
-    flex-basis: calc(25% - 0.2em);
-    padding: 1em;
+    flex-basis: calc(25% - 0.4em);
+    padding: 1em 1em 0.5em 1em;
     border-radius: 0.5em;
+    transition: all 0.2s ease-in;
 }
 
 #node:hover {
-    transform: scale(102%);
+    transform: scale(101%);
     transition: all 0.5s ease-out;
 }
 
-#node h2 {
+#node h2, #node h3 {
     margin: 0;
     color: rgb(255,255,255);
-    padding-bottom: 1em;
+}
+
+#node h3 {
+    padding: 0;
+    font-size: 0.8em;
+    padding-bottom: 0.8em;
+}
+
+#node-state-ok {
+    color: lime;
+}
+
+#node-state-error {
+    color: tomato;
+    font-weight: bolder;
 }
 
 #node table td {
@@ -77,14 +95,26 @@ h1 {
 }
 
 #node button:hover {
-    background-color: rgba(63, 94, 251, 1);
+    background: linear-gradient(45deg,rgba(63, 94, 251, 1) 70%, rgba(252, 70, 107, 1) 100%);
     border-color: transparent;
     transition: all 0.2s ease-out;
 }
 
+footer {
+    position: fixed;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px;
+    margin-bottom: 0;
+    bottom: 0;
+    color: rgb(255,255,255);
+    background-color: rgb(51,51,51);
+}
+
 @media screen and (max-width: 1250px) {
     #node {
-        flex-basis: calc(33.333333333% - 0.2em);
+        flex-basis: calc(33.333333333% - 0.4em);
     } 
 }
 
@@ -97,5 +127,20 @@ h1 {
 @media screen and (max-width: 632px) {
     #node {
         flex-basis: 100%;
+    }
+
+    header {
+        background-color: rgb(31,31,31,0.9);
+        width: 100%;
+        position: sticky;
+        top: 0;
+        left:0;
+        z-index: 5;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+
+    footer {
+        background-color: rgb(51,51,51,0.95);
     }
 }
