@@ -10,6 +10,7 @@
 html, body {
     margin: 0;
     padding: 0;
+    background-color: rgb(240,240,240);
 }
 
 main {
@@ -23,12 +24,12 @@ main {
 #wrapper {
     max-width: 1400px;
     margin: 0 auto;
-    background-color: rgb(240,240,240);
 }
 
 h1 {
     font-weight: bold;
     background: -webkit-linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding-left: 0.5em;
@@ -37,12 +38,12 @@ h1 {
 #node {
     background: #3F5EFB;
     background: linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
-    flex-basis: calc(25% - 0.2em) ;
+    flex-basis: calc(25% - 0.2em);
     padding: 1em;
     border-radius: 0.5em;
 }
 
-#node:hover{
+#node:hover {
     transform: scale(102%);
     transition: all 0.5s ease-out;
 }
@@ -50,29 +51,50 @@ h1 {
 #node h2 {
     margin: 0;
     color: rgb(255,255,255);
+    padding-bottom: 1em;
 }
 
 #node table td {
     color: rgb(255,255,255);
+    font-size: 1.3em;
 }
 
 #node table td:first-child {
     width: 120px;
 }
 
-@media screen and (max-width: 1050px) {
+#node button {
+    width: 100%;
+    border: 2px;
+    border-color: linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    border-style: solid;
+    border-radius: 0.5em;
+    padding: 12px;
+    background: transparent;
+    color:rgb(255,255,255);
+    font-size: 1.3em;
+    transition: all 0.2s ease-in;
+}
+
+#node button:hover {
+    background-color: rgba(63, 94, 251, 1);
+    border-color: transparent;
+    transition: all 0.2s ease-out;
+}
+
+@media screen and (max-width: 1250px) {
     #node {
         flex-basis: calc(33.333333333% - 0.2em);
     } 
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
     #node {
         flex-basis: calc(50% - 0.2em);
     } 
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 632px) {
     #node {
         flex-basis: 100%;
     }
