@@ -1,0 +1,33 @@
+Zeige den letzten Temperaturwert des Sensorboards mit der Seriennummer 1001 an:
+SELECT messung.messwert, messung.zeitstempel FROM messung 
+INNER JOIN sensortyp 
+ON
+messung.sensortyp_id=sensortyp.sensortyp_id
+INNER JOIN sensorboard
+ON 
+messung.board_id=sensorboard.board_id
+WHERE sensortyp.bezeichnung='temp' AND sensorboard.seriennummer=1001 
+ORDER BY messung.zeitstempel DESC LIMIT 1;
+
+-----------------------------------------------------------------------------------
+
+Zeige mir die vier aktuellsten Messerte der Sensoren eines Sensorboards an:
+SELECT 
+    messung.messung_id,
+    messung.board_id,
+    messung.sensortyp_id,
+    sensortyp.bezeichnung AS sensortyp,
+    messung.zeitstempel,
+    messung.messwert
+FROM 
+    messung
+INNER JOIN 
+    sensortyp ON messung.sensortyp_id = sensortyp.sensortyp_id
+WHERE 
+    messung.zeitstempel = (
+        SELECT MAX(zeitstempel)
+        FROM messung
+        WHERE board_id = 1
+    )
+  AND messung.board_id = 1
+ORDER BY messung.sensortyp_id;

@@ -30,7 +30,7 @@ main {
 
 h1 {
     font-weight: bold;
-    background: linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    background: linear-gradient(212deg, rgba(63, 94, 251, 1) 50%, rgba(252, 70, 107, 1) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
