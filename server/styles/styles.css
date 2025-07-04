@@ -20,7 +20,7 @@ main {
     margin-bottom: 100px;
     gap: 0.4em;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 #wrapper {
@@ -30,7 +30,7 @@ main {
 
 h1 {
     font-weight: bold;
-    background: linear-gradient(212deg, rgba(63, 94, 251, 1) 50%, rgba(252, 70, 107, 1) 100%);
+    background: linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -71,20 +71,6 @@ h1 {
     color: tomato;
     font-weight: bolder;
     animation: node-pulse-color 1.5s infinite;
-    }
-    
-    @keyframes node-pulse-color {
-        0% {
-            color: tomato;
-        }
-    
-        50% {
-            color: #ffb3a3;
-        }
-    
-        100% {
-            color: tomato;
-        }
 }
 
 #node table td {
@@ -113,6 +99,18 @@ h1 {
     background: linear-gradient(45deg,rgba(63, 94, 251, 1) 70%, rgba(252, 70, 107, 1) 100%);
     border-color: transparent;
     transition: all 0.2s ease-out;
+}
+
+@keyframes node-pulse-color {
+    0% {
+        color: tomato;
+    }
+    50% {
+        color: #ffb3a3; /* heller Ton oder transparent */
+    }
+    100% {
+        color: tomato;
+    }
 }
 
 footer {

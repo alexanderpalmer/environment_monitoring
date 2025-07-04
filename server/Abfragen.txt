@@ -11,12 +11,21 @@ ORDER BY messung.zeitstempel DESC LIMIT 1;
 
 -----------------------------------------------------------------------------------
 
-Zeige mir die vier aktuellsten Messerte der Sensoren eines Sensorboards an:
+Zeige die notwendigen Informationen inklusive Raum aller Sensorboards an:
+SELECT sensorboard.board_id, sensorboard.seriennummer, raum.bezeichnung as raum
+FROM sensorboard 
+INNER JOIN raum
+ON sensorboard.raum_id = raum.raum_id
+
+-----------------------------------------------------------------------------------
+
+Zeige die vier aktuellsten Messerte der Sensoren eines Sensorboards an:
 SELECT 
     messung.messung_id,
     messung.board_id,
     messung.sensortyp_id,
     sensortyp.bezeichnung AS sensortyp,
+    sensortyp.einheit AS einheit,
     messung.zeitstempel,
     messung.messwert
 FROM 
@@ -31,3 +40,22 @@ WHERE
     )
   AND messung.board_id = 1
 ORDER BY messung.sensortyp_id;
+-----------------------------------------------------------------------------------
+Zeige mir den letzten Temperaturwert des Boards 1 an
+SELECT 
+    m.messung_id, 
+    m.board_id, 
+    m.sensortyp_id, 
+    st.bezeichnung, 
+    m.zeitstempel, 
+    m.messwert 
+FROM 
+    messung m 
+JOIN 
+    sensortyp st ON m.sensortyp_id = st.sensortyp_id 
+WHERE 
+    m.board_id = 1 
+    AND st.bezeichnung = 'Temperatur' 
+ORDER BY 
+    m.zeitstempel DESC 
+LIMIT 1;
