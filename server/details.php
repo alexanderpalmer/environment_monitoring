@@ -31,7 +31,7 @@ $boardID = $_GET['bid'];
 	foreach($sensorTypes as $sensor) {
 	    echo '
 	    <div id="value-table">
-	    <h2>'.$sensor['beschreibung'].'</h2>
+	    <h2>'.$sensor['beschreibung'].'<img src="img/'.$sensor['symbol'].'"></h2>
 	    <div class="table-scroll-wrapper">
 		<table>
 		    <tr>
@@ -52,7 +52,19 @@ $boardID = $_GET['bid'];
 	}
 	?>
         </main>
-	 <footer>Das ist der Footer</footer>
+	 <footer>
+	 <ul>
+	    <li><a href="index.php"><img src="img/home_medium.png"> <span class="nav-text">Zurück zur Übersicht</span></a></li>
+	    <li><a href="#" id="reload"><img src="img/reload_medium.png"> <span class="nav-text">Daten aktualisieren</span></a></li>
+	 </ul>
+	 </footer>
     </div>
+    <script>
+    reload = document.getElementById('reload');
+    reload.addEventListener('click', function() {
+	location.reload();
+    });
+
+    </script>
 </body>
 </html>
