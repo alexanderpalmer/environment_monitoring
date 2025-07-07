@@ -1,0 +1,75 @@
+.table-scroll-wrapper {
+    max-height: 20em;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.3em;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#value-table {
+    background: linear-gradient(212deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    flex-basis: calc(25% - 0.4em);
+    padding: 1em;
+    border-radius: 0.5em;
+    width: 100%;
+}
+
+#value-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#value-table h2 {
+
+    padding: 0 0.2em 0 0.2em;
+    color: #fff;
+}
+
+
+
+#value-table th {
+    text-align: left;
+}
+
+#value-table th,
+td {
+    padding: 0.2em 1em;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.table-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (max-width: 1400px) {
+    #value-table {
+        flex-basis: calc(33.333333333% - 0.4em);
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    #value-table {
+        flex-basis: calc(50% - 0.2em);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #value-table {
+        flex-basis: 100%;
+    }
+}

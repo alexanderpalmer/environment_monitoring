@@ -1,4 +1,5 @@
 Zeige den letzten Temperaturwert des Sensorboards mit der Seriennummer 1001 an:
+
 SELECT messung.messwert, messung.zeitstempel FROM messung 
 INNER JOIN sensortyp 
 ON
@@ -12,6 +13,7 @@ ORDER BY messung.zeitstempel DESC LIMIT 1;
 -----------------------------------------------------------------------------------
 
 Zeige die notwendigen Informationen inklusive Raum aller Sensorboards an:
+
 SELECT sensorboard.board_id, sensorboard.seriennummer, raum.bezeichnung as raum
 FROM sensorboard 
 INNER JOIN raum
@@ -20,6 +22,7 @@ ON sensorboard.raum_id = raum.raum_id
 -----------------------------------------------------------------------------------
 
 Zeige die vier aktuellsten Messerte der Sensoren eines Sensorboards an:
+
 SELECT 
     messung.messung_id,
     messung.board_id,
@@ -42,6 +45,7 @@ WHERE
 ORDER BY messung.sensortyp_id;
 -----------------------------------------------------------------------------------
 Zeige mir den letzten Temperaturwert des Boards 1 an
+
 SELECT 
     m.messung_id, 
     m.board_id, 
@@ -59,3 +63,54 @@ WHERE
 ORDER BY 
     m.zeitstempel DESC 
 LIMIT 1;
+
+-----------------------------------------------------------------------------------
+Hole alle Temperaturwerte eines bestimmten Boards
+
+SELECT sensorboard.seriennummer, messung.zeitstempel, messung.messwert,sensortyp.einheit 
+FROM messung INNER JOIN sensortyp
+ON messung.sensortyp_id=sensortyp.sensortyp_id 
+INNER JOIN sensorboard
+ON messung.board_id=sensorboard.board_id
+WHERE sensortyp.bezeichnung='temp' AND 
+sensorboard.seriennummer='1001'
+
+-----------------------------------------------------------------------------------
+Bestimme die Grösse in MB einer konkreten Datenbank
+
+SELECT 
+    table_schema AS datenbank,
+    ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS groesse_mb
+FROM 
+    information_schema.tables
+WHERE 
+    table_schema = 'environment-monitoring-simple'
+GROUP BY 
+    table_schema;
+
+
+-----------------------------------------------------------------------------------
+Beschaffe nur Datensätze, deren Temperaturwerte sich voneinander unterscheiden
+
+WITH differenz AS (
+  SELECT
+    sensorboard.seriennummer,
+    messung.zeitstempel,
+    messung.messwert,
+    sensortyp.einheit,
+    LAG(messung.messwert) OVER (
+      PARTITION BY sensorboard.seriennummer, messung.sensortyp_id
+      ORDER BY messung.zeitstempel
+    ) AS vorheriger_wert
+  FROM messung
+  INNER JOIN sensortyp ON messung.sensortyp_id = sensortyp.sensortyp_id
+  INNER JOIN sensorboard ON messung.board_id = sensorboard.board_id
+  WHERE sensortyp.bezeichnung = 'temp'
+    AND sensorboard.seriennummer = '1001'
+)
+
+SELECT seriennummer, zeitstempel, messwert, einheit
+FROM differenz
+WHERE messwert != vorheriger_wert
+   OR vorheriger_wert IS NULL
+ORDER BY zeitstempel;
