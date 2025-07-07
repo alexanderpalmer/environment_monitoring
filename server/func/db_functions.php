@@ -59,7 +59,7 @@ function getAllSensorTypes($link) {
 }
 
 function getDataBySensorType($link, $boardID, $sensorDesc) {
-    $sql='SELECT sensorboard.seriennummer, messung.zeitstempel, messung.messwert,sensortyp.einheit 
+    $sql='SELECT sensorboard.seriennummer, messung.zeitstempel, ROUND(messung.messwert,1) AS messwert,sensortyp.einheit 
     FROM messung INNER JOIN sensortyp
     ON messung.sensortyp_id=sensortyp.sensortyp_id 
     INNER JOIN sensorboard

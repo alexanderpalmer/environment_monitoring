@@ -26,34 +26,33 @@ $boardID = $_GET['bid'];
             <h1>Environment Monitoring</h1>
         </header>
         <main>
-			<?php
-			$sensorTypes = getAllSensorTypes($link);
-			foreach($sensorTypes as $sensor) {
-			echo '
-			<div id="value-table">
-                <h2>'.$sensor['beschreibung'].'</h2>
-                <div class="table-scroll-wrapper">
-                    <table>
-                        <tr>
-                            <th>Zeit</th>
-                            <th>Messwert</th>
-                        </tr>
-			';
-			
-            $sensorData = getDataBySensorType($link, $boardID, $sensor['bezeichnung']);
-            foreach($sensorData as $data) {
-				echo "<tr>
-				<td>{$data['zeitstempel']}</td>
-				<td>{$data['messwert']}</td>
-				</tr>";
-			}
-            echo '
-                    </table>
-                </div>
-            </div>';
-		}
-		?>
+	<?php
+	$sensorTypes = getAllSensorTypes($link);
+	foreach($sensorTypes as $sensor) {
+	    echo '
+	    <div id="value-table">
+	    <h2>'.$sensor['beschreibung'].'</h2>
+	    <div class="table-scroll-wrapper">
+		<table>
+		    <tr>
+			<th>Zeit</th>
+			<th>Messwert</th>
+		    </tr>';
+			    
+	    $sensorData = getDataBySensorType($link, $boardID, $sensor['bezeichnung']);
+	    foreach($sensorData as $data) {
+		echo "<tr>
+		<td>".getFormattedDate($data['zeitstempel'])."</td>
+		<td>{$data['messwert']} {$data['einheit']}</td>
+		</tr>";
+	    }
+	    echo '</table>
+		</div>
+	    </div>';
+	}
+	?>
         </main>
+	 <footer>Das ist der Footer</footer>
     </div>
 </body>
 </html>
