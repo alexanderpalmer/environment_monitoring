@@ -5,9 +5,6 @@ $link = connectDatabase();
 // Beschaffung der Board-ID, welcher aus index.html via 
 // dem Hyperlink um den Button transportiert wurde.
 $boardID = $_GET['bid'];
-//echo '<pre style="color: white">';
-//var_dump(getAllSensorTypes($link));
-//echo '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="de-CH">
@@ -31,7 +28,8 @@ $boardID = $_GET['bid'];
 	foreach($sensorTypes as $sensor) {
 	    echo '
 	    <div id="value-table">
-	    <h2>'.$sensor['beschreibung'].'<img src="img/'.$sensor['symbol'].'"></h2>
+	    <h2>'.$sensor['beschreibung'].'<a href="chart.php?bid='.$boardID .'&sid='.$sensor['sensortyp_id'].'&des='.$sensor['beschreibung'].'">
+		<img src="img/'.$sensor['symbol'].'"></a></h2>
 	    <div class="table-scroll-wrapper">
 		<table>
 		    <tr>

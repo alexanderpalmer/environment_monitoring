@@ -1,0 +1,35 @@
+body {
+    font-family: sans-serif;
+    padding: 2rem;
+}
+
+
+
+canvas {
+    width: 100% !important;
+    height: 60vh !important;
+    background: linear-gradient(212deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    padding: 1em;
+    border-radius: 1em;
+}
+
+footer ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+footer ul li {
+    padding: 0.5em 0;
+}
+
+footer img {
+    vertical-align: middle;
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+}

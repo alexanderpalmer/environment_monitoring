@@ -1,6 +1,6 @@
 <?php
 function connectDatabase() {
-    $link = mysqli_connect('localhost', 'root', 'zbwzbw', 'environment-monitoring-simple') or 
+    $link = mysqli_connect('localhost', 'root', '', 'environment-monitoring-simple') or 
     die('Verbindung zur Datenbank konnte nicht hergestellt werden!');
     return $link;
 }
