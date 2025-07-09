@@ -74,3 +74,34 @@ function getDataBySensorType($link, $boardID, $sensorDesc) {
     }
     return $sensorData;
 }
+
+function getDataForDateFullRange($link, $boardID, $sensortypID) {
+    $sql = "
+        SELECT 
+            DATE_FORMAT(zeitstempel, '%Y-%m-%dT%H:00:00') AS x,
+            ROUND(AVG(messwert), 2) AS y
+        FROM messung
+        WHERE sensortyp_id = {$sensortypID} AND board_id = {$boardID}
+        AND zeitstempel BETWEEN 
+        (SELECT MIN(zeitstempel) FROM messung WHERE sensortyp_id = {$sensortypID} AND board_id = {$boardID})
+        AND 
+        (SELECT MAX(zeitstempel) FROM messung WHERE sensortyp_id = {$sensortypID} AND board_id = {$boardID})
+        GROUP BY x
+        ORDER BY x ASC;
+    ";
+    $result = mysqli_query($link, $sql);
+
+    // Daten vorbereiten für Chart.js (x = Zeit, y = Temperaturwert)
+    $datapoints = [];
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $datapoints[] = [
+                "x" => $row['x'],
+                "y" => (float)$row['y']
+            ];
+        }
+    }
+
+    return $datapoints;
+}

@@ -1,4 +1,6 @@
 <?php
+include "func/db_functions.php";
+$link = connectDatabase();
 // Beschaffung der Board-ID, welcher aus index.html via 
 // dem Hyperlink um den Button transportiert wurde.
 $boardID = $_GET['bid'];
@@ -9,37 +11,8 @@ $sensortypID = $_GET['sid'];
 // dem Hyperlink um den Button transportiert wurde.
 $sensortypDesc = $_GET['des'];
 
-
-// Verbindung zur MariaDB aufbauen
-$link = mysqli_connect('localhost', 'root', '', 'environment-monitoring-simple') 
-    or die('Verbindung zur Datenbank konnte nicht hergestellt werden!');
-
-$sql = "
-    SELECT 
-        DATE_FORMAT(zeitstempel, '%Y-%m-%dT%H:00:00') AS x,
-        ROUND(AVG(messwert), 2) AS y
-    FROM messung
-    WHERE sensortyp_id = {$sensortypID} AND board_id = {$boardID}
-      AND zeitstempel BETWEEN '2025-07-01 00:00:00' AND '2025-07-03 23:59:59'
-    GROUP BY x
-    ORDER BY x ASC;
-";
-$result = mysqli_query($link, $sql);
-
-// Daten vorbereiten für Chart.js (x = Zeit, y = Temperaturwert)
-$datapoints = [];
-
-if ($result && mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $datapoints[] = [
-            "x" => $row['x'],
-            "y" => (float)$row['y']
-        ];
-    }
-}
-
-// Verbindung schließen
-mysqli_close($link);
+// Beschaft
+$datapoints = getDataForDateFullRange($link, $boardID, $sensortypID);
 
 // Daten als JSON für JavaScript
 $datapoints_json = json_encode($datapoints);
@@ -65,6 +38,23 @@ $datapoints_json = json_encode($datapoints);
         <h1>Environment Monitoring</h1>
     </header>
     <main>
+    <form action="">
+        <label for="date-from">Von: </label>
+        <select id="date-from">
+            <option>01.07.2025</option>
+            <option>02.07.2025</option>
+            <option>03.07.2025</option>
+            <option>04.07.2025</option>
+        </select>
+
+        <label for="date-to">Bis: </label>
+        <select id="date-to">
+            <option>01.07.2025</option>
+            <option>02.07.2025</option>
+            <option>03.07.2025</option>
+            <option>04.07.2025</option>
+        </select>
+    </form>
     <canvas id="chart"></canvas>
     </main>
 </div>
@@ -143,7 +133,7 @@ $datapoints_json = json_encode($datapoints);
     </script>
      <footer>
 	 <ul>
-	    <li><a href="index.php"><img src="img/home_medium.png"> <span class="nav-text">Zurück zur Übersicht</span></a></li>
+	    <li><a href="details.php?bid=<?php echo $boardID; ?>"><img src="img/home_medium.png"> <span class="nav-text">Zurück zur Übersicht</span></a></li>
 	    <li><a href="#" id="reload"><img src="img/reload_medium.png"> <span class="nav-text">Daten aktualisieren</span></a></li>
 	 </ul>
 	 </footer>

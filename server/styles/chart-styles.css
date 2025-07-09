@@ -3,6 +3,22 @@ body {
     padding: 2rem;
 }
 
+form {
+    display: flex;
+}
+
+form label {
+    color: white;
+    padding: 0 0.5em;
+    font-size: 1em;
+}
+
+form select {
+    width: 8em;
+    background: black;
+    color: white;
+    border: 0;
+}
 
 
 canvas {
