@@ -1,10 +1,11 @@
-.table-scroll-wrapper {
-    max-height: 20em;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0.3em;
-    background-color: rgba(255, 255, 255, 0.1);
+h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+h2 img {
+    vertical-align: middle;
 }
 
 #value-table {
@@ -26,8 +27,6 @@
     color: #fff;
 }
 
-
-
 #value-table th {
     text-align: left;
 }
@@ -39,6 +38,14 @@ td {
     color: #fff;
 }
 
+.table-scroll-wrapper {
+    max-height: 20em;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.3em;
+    background-color: rgba(255, 255, 255, 0.1);
+}
 .table-scroll-wrapper::-webkit-scrollbar {
     width: 8px;
 }
