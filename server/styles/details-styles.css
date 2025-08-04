@@ -1,11 +1,11 @@
 h2 {
     display: flex;
     justify-content: space-between;
+    align-items: center
 }
 
 h2 img {
     vertical-align: middle;
-    padding: right: 1.5em;
 }
 
 .table-scroll-wrapper {
@@ -104,23 +104,23 @@ footer a {
     #value-table {
         flex-basis: 100%;
     }
-    
+
     footer {
         padding-top: 0;
         padding-bottom: 0;
     }
-    
+
     footer ul {
         flex-direction: row;
         justify-content: space-between;
     }
-    
+
     footer ul li {
         margin: 0;
         padding: 1em;
     }
-    
-        footer .nav-text {
+
+    footer .nav-text {
         display: none;
     }
 }
