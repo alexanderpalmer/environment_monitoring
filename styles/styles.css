@@ -38,7 +38,7 @@ h1 {
 }
 
 
-#node {
+.node {
     background: #3F5EFB;
     background: linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
     flex-basis: calc(25% - 0.4em);
@@ -47,27 +47,28 @@ h1 {
     transition: all 0.2s ease-in;
 }
 
-#node:hover {
+.node:hover {
     transform: scale(101%);
     transition: all 0.5s ease-out;
 }
 
-#node h2, #node h3 {
+.node h2,
+#node h3 {
     margin: 0;
     color: rgb(255,255,255);
 }
 
-#node h3 {
+.node h3 {
     padding: 0;
     font-size: 0.8em;
     padding-bottom: 0.8em;
 }
 
-#node-state-ok {
+.node-state-ok {
     color: lime;
 }
 
-#node-state-error {
+.node-state-error {
     color: tomato;
     font-weight: bolder;
     animation: node-pulse-color 1.5s infinite;
@@ -87,16 +88,16 @@ h1 {
         }
 }
 
-#node table td {
+.node table td {
     color: rgb(255,255,255);
     font-size: 1.3em;
 }
 
-#node table td:first-child {
+.node table td:first-child {
     width: 120px;
 }
 
-#node button {
+.node button {
     width: 100%;
     border: 2px;
     border-color: linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
@@ -128,19 +129,19 @@ footer {
 }
 
 @media screen and (max-width: 1250px) {
-    #node {
+    .node {
         flex-basis: calc(33.333333333% - 0.4em);
     } 
 }
 
 @media screen and (max-width: 1000px) {
-    #node {
+    .node {
         flex-basis: calc(50% - 0.2em);
     } 
 }
 
 @media screen and (max-width: 632px) {
-    #node {
+    .node {
         flex-basis: 100%;
     }
 
