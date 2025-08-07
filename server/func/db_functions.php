@@ -105,3 +105,7 @@ function getDataForDateFullRange($link, $boardID, $sensortypID) {
 
     return $datapoints;
 }
+
+function getTimestampMaxMin($link, $boardID, $sensortypID) {
+    
+}
