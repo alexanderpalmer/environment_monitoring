@@ -40,7 +40,7 @@ h1 {
 
 .node {
     background: #3F5EFB;
-    background: linear-gradient(212deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    background: linear-gradient(212deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
     flex-basis: calc(25% - 0.4em);
     padding: 1em 1em 0.5em 1em;
     border-radius: 0.5em;
